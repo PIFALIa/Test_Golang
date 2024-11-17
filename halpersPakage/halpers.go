@@ -7,6 +7,7 @@ import (
 
 func MarksDel(str string) string {
 
+	str = strings.ReplaceAll(str, "\"", "")
 	counts := make(map[string]int)
 	words := strings.Fields(str)
 	var result string
@@ -49,13 +50,17 @@ func MarksDel(str string) string {
 
 	for line, i := range counts {
 
+		if i == len(counts) || i == 1 {
+			result += "\""
+		}
 		if i == 1 && counts["/"] < 1 {
+
 			result += line
-			result += " "
 		}
 	}
 	result = strings.ReplaceAll(result, " ", "")
 	result = strings.ReplaceAll(result, "+", "")
 	result = strings.ReplaceAll(result, "*", "")
+	result += "\""
 	return result
 }
