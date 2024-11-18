@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	var a string
-	fmt.Println("Введите букавы")
-	fmt.Scanf("%s\n", &a)
+	// var a string
+	// fmt.Println("Введите букавы")
+	// fmt.Scanf("%s\n", &a)
 
-	fmt.Print("Ваш ответ: ")
-	fmt.Println(hel.MarksDel(a))
+	// fmt.Print("Ваш ответ: ")
+	fmt.Println(hel.MarksDel("iiii/ * 12"))
 }
