@@ -13,12 +13,13 @@ func MarksDel(str string) string {
 	var result string
 	var g int
 	var mno int
+	var num int
 	var dot bool
 
 	for i, word := range words {
 
 		if g == 1 {
-			g = 2
+			g++
 			mno, _ := strconv.Atoi(words[i])
 			if mno > 10 {
 				mno = 10
@@ -56,9 +57,12 @@ func MarksDel(str string) string {
 
 	for line, i := range counts {
 
-		if i == len(counts) || i == 1 && g == 0 {
+		if i == len(counts) || i == 1 && g == 0 && num == 0 {
+
 			result += "\""
+			num++
 		}
+
 		if i == 1 && counts["/"] < 1 && g == 0 {
 
 			result += line
