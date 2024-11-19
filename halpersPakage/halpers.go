@@ -13,7 +13,7 @@ func MarksDel(str string) string {
 	var result string
 	var g int
 	var mno int
-	var num int
+	// var num int
 	var dot bool
 
 	for i, word := range words {
@@ -55,13 +55,13 @@ func MarksDel(str string) string {
 		counts[word]++
 	}
 
+	result += "\""
 	for line, i := range counts {
 
-		if i == len(counts) || i == 1 && g == 0 && num == 0 {
+		// if i == len(counts) || i == 1 && g == 0 && num == 0 {
 
-			result += "\""
-			num++
-		}
+		// 	num++
+		// }
 
 		if i == 1 && counts["/"] < 1 && g == 0 {
 
@@ -71,6 +71,23 @@ func MarksDel(str string) string {
 	result = strings.ReplaceAll(result, " ", "")
 	result = strings.ReplaceAll(result, "+", "")
 	result = strings.ReplaceAll(result, "*", "")
+
+	run := []rune(result)
+	if len(run) >= 40 {
+		bo := true
+		if bo {
+			result = ""
+			for inum, _ := range run {
+				if inum <= 40 {
+					result += string(run[inum])
+				}
+			}
+			bo = false
+		}
+		result += "..."
+		result += "\""
+		return result
+	}
 	if dot {
 		result += "..."
 	}
