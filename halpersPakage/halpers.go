@@ -11,29 +11,43 @@ func MarksDel(str string) string {
 	counts := make(map[string]int)
 	slStr := strings.Fields(str)
 
-	var result string
+	result := "\""
 	runes := []rune(str)
 	resultRues := ""
 
 	minus := false
 	mno := false
-	// countRunes := 0
-	// del := false
+	del := false
+	pluse := false
 
 	for _, s := range slStr {
 
 		switch s {
 		case "-":
-			s = ""
+
 			minus = true
 		case "*":
 			s = ""
 			mno = true
-			// case "/":
-			// 	del = true
-			// }
+		case "/":
+			s = ""
+			del = true
+		case "+":
+			s = ""
+			pluse = true
 		}
 		counts[s]++
+	}
+
+	if del {
+
+		runesHelp := []rune(str)
+		num, _ := strconv.Atoi(string(runesHelp[len(runes)-1]))
+		for i, s := range runesHelp {
+			if i < num {
+				result += string(s)
+			}
+		}
 	}
 
 	if mno {
@@ -53,16 +67,28 @@ func MarksDel(str string) string {
 			}
 
 		}
+		if len(runesHelp) < 40 {
+
+			result += resultRues
+		}
 	}
 
 	for i := range counts {
 
 		if minus && counts[i] < 2 {
 
+			if i == "-" {
+				break
+			}
+			result += i
+		}
+
+		if pluse {
 			result += i
 		}
 	}
 
+	result += "\""
 	result = strings.ReplaceAll(result, " ", "")
 
 	return result
