@@ -51,7 +51,7 @@ func MarksDel(str string) string {
 	}
 
 	if mno {
-		num, _ := strconv.Atoi(string(runes[len(runes)-1]))
+		num, _ := strconv.Atoi(slStr[len(slStr)-1])
 		for range num {
 			resultRues += slStr[0]
 		}
