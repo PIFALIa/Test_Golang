@@ -73,12 +73,15 @@ func MarksDel(str string) string {
 		}
 	}
 
-	for i := range counts {
+	for i, s := range counts {
 
 		if minus && counts[i] < 2 {
 
 			if i == "-" {
 				break
+			}
+			if slStr[s] != slStr[s+2] {
+				result += " "
 			}
 			result += i
 		}
@@ -89,7 +92,7 @@ func MarksDel(str string) string {
 	}
 
 	result += "\""
-	result = strings.ReplaceAll(result, " ", "")
+	//result = strings.ReplaceAll(result, " ", "")
 
 	return result
 }
