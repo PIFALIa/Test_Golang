@@ -53,6 +53,11 @@ func MarksDel(str string) string {
 	if mno {
 		num, _ := strconv.Atoi(slStr[len(slStr)-1])
 
+		if num < 1 {
+			result = "\"программа принимает значение от 1 до 10\""
+			return result
+		}
+
 		if num > 10 {
 			result = "\"программа принимает значение до 10 включительно\""
 			return result
